@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  position: fixed;
+
+  width: 100vw;
+  height: 100px;
+  padding: 5px 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: aqua;
+}
+
+.header_buttons {
+  width: 50vw;
+  display: flex;
+  justify-content: space-around;
+}
+
+.reload-button {
+  width: 40px;
+  height: 43px;
+  border: 0;
+
+  background: transparent;
+
+  object-fit: cover;
+  background-size: 40px;
+
+  background-image: url(/reload.svg);
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+
+  width: 100vw;
+  background-color: red;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-item-btn {
+  display: flex;
+
+  border: 0;
+  background: transparent;
+
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.plus-img {
+  height: 30px;
+  width: 30px;
+}
+
+.todo-items {
+  padding-top: 110px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 40vw;
+  min-height: 40px;
+
+  background-color: lightgreen;
+}
+
+.todo-item_text {
+  height: fit-content;
+}
+
+.todo-item_btn {
+  height: 40px;
+  width: 40px;
+  background: transparent;
+
+  background-repeat: no-repeat;
+  background-position: center;
+
+  border: 0;
+  object-fit: cover;
+  background-size: 40px;
+}
+
+.todo-item_btns {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.todo-item_edit-btn {
+  background-image: url(/edit.svg);
+}
+
+.todo-item_delete-btn {
+  background-image: url(/delete.svg);
+}
+
+.todo-item_edit-apply-btn {
+  background-image: url(/apply.svg);
+}
+
+.todo-item_edit-cancel-btn {
+  background-image: url(/cancel.svg);
+}
+
+.todo-item_edit-input {
+  border: 1px black solid;
+  width: 70%;
+  height: 40px;
+
+  background-color: #fff;
+}
+
+.todo-item_edit-menu {
+  display: none;
+
+  justify-content: space-between;
+
+  width: 100%;
+  height: 40px;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/index.css" />
+    <title>Todo</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="title-container">
+        <h1>To Do List</h1>
+      </div>
+      <div class="header_buttons">
+        <p>Date</p>
+        <select class="done_select" onchange="renderItems()">
+          <option value="all">all</option>
+          <option value="done">done</option>
+          <option value="undone">undone</option>
+        </select>
+
+        <input
+          class="date-input"
+          type="date"
+          id="start"
+          name="trip-start"
+          value="2023-01-01"
+          min="2023-01-01"
+          max="2023-12-31"
+          onchange="renderItems()" />
+
+        <button class="reload-button" onclick="clearItems()"></button>
+      </div>
+    </header>
+    <main class="todo-items"></main>
+    <footer class="footer">
+      <input class="item-name-input" type="'text" />
+      <button class="add-item-btn" onclick="addItem()">
+        <img class="plus-img" src="/add.svg" />
+        <p>Add new item</p>
+      </button>
+    </footer>
+  </body>
+  <script src="scripts/index.js"></script>
+</html>
