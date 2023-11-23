@@ -41,16 +41,6 @@ const clearLocalStorage = () => {
   localStorage.setItem("items", jsonItems);
 };
 
-// itemName input
-
-const clearItemNameInputValue = () => {
-  document.querySelector(".item-name-input").value = "";
-};
-
-const getItemNameInputValue = () => {
-  return document.querySelector(".item-name-input").value;
-};
-
 //render
 
 const clearRenderedItems = () => {
@@ -267,7 +257,6 @@ const addItem = (e) => {
   const item = { id: `item-${curId}`, text: itemText, checked: false, date };
   items.push(item);
   setItems(items);
-  // clearItemNameInputValue();
   incrementId();
 
   renderItems();
