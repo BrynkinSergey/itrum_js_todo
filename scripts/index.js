@@ -151,12 +151,98 @@ const renderItems = () => {
   }
 
   items.forEach((item) => renderItem(item));
+  setWordDateToToggleButton();
 };
 
 // date
 
+const getDayOfWeek = (date) => {
+  let dayOfWeek;
+  switch (date.getDay()) {
+    case 0:
+      dayOfWeek = "Sunday";
+      break;
+    case 1:
+      dayOfWeek = "Monday";
+      break;
+    case 2:
+      dayOfWeek = "Tuesday";
+      break;
+    case 3:
+      dayOfWeek = "Wednesday";
+      break;
+    case 4:
+      dayOfWeek = "Thursday";
+      break;
+    case 5:
+      dayOfWeek = "Friday";
+      break;
+    case 6:
+      dayOfWeek = "Saturday";
+      break;
+  }
+
+  return dayOfWeek;
+};
+
+const parseDateToCustomString = (date) => {
+  const day = date.getDate();
+  let month;
+  switch (date.getMonth()) {
+    case 0:
+      month = "Jan";
+      break;
+    case 1:
+      month = "Feb";
+      break;
+    case 2:
+      month = "Mar";
+      break;
+    case 3:
+      month = "Apr";
+      break;
+    case 4:
+      month = "May";
+      break;
+    case 5:
+      month = "Jun";
+      break;
+    case 6:
+      month = "Jul";
+      break;
+    case 7:
+      month = "Aug";
+      break;
+    case 8:
+      month = "Sep";
+      break;
+    case 9:
+      month = "Oct";
+      break;
+    case 10:
+      month = "Nov";
+      break;
+    case 11:
+      month = "Dec";
+      break;
+  }
+
+  return `${month} ${day}`;
+};
+
 const getSelectedDate = () => {
   return document.querySelector(".date-input").value;
+};
+
+const setWordDateToToggleButton = () => {
+  const toggleButton = document.querySelector(".datepicker-toggle-button");
+  const dateInputValue = document.querySelector(".date-input").value;
+  const date = new Date(dateInputValue);
+
+  toggleButton.innerHTML = [
+    getDayOfWeek(date),
+    parseDateToCustomString(date),
+  ].join(", ");
 };
 
 // interface
