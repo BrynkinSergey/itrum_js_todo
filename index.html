@@ -37,11 +37,12 @@
     </header>
     <main class="todo-items"></main>
     <footer class="footer">
-      <input class="item-name-input" type="'text" />
-      <button class="add-item-btn" onclick="addItem()">
-        <img class="plus-img" src="/add.svg" />
-        <p>Add new item</p>
-      </button>
+      <img class="plus-img" src="/add.svg" />
+      <input
+        type="text"
+        class="add-item-input"
+        placeholder="Add new item"
+        onchange="onTestChange()" />
     </footer>
   </body>
   <script src="scripts/index.js"></script>

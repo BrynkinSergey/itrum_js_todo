@@ -253,9 +253,11 @@ const setWordDateToToggleButton = () => {
 };
 
 // interface
-const addItem = () => {
+const addItem = (e) => {
+  const itemText = e.target.value.trim();
+  e.target.value = "";
+
   const items = getItems();
-  const itemText = getItemNameInputValue().trim();
 
   const date = getSelectedDate();
 
@@ -265,7 +267,7 @@ const addItem = () => {
   const item = { id: `item-${curId}`, text: itemText, checked: false, date };
   items.push(item);
   setItems(items);
-  clearItemNameInputValue();
+  // clearItemNameInputValue();
   incrementId();
 
   renderItems();
@@ -344,15 +346,18 @@ const clearItems = () => {
   clearRenderedItems();
 };
 
+onTestChange = () => {
+  console.log("onchange");
+};
+
 const addEnterEventListeners = () => {
-  document.querySelector(".item-name-input").onkeypress = function (e) {
-    if (!e) e = window.event;
-    var keyCode = e.code || e.key;
-    if (keyCode == "Enter") {
-      addItem();
-      return false;
-    }
-  };
+  document
+    .querySelector(".add-item-input")
+    .addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        addItem(e);
+      }
+    });
 };
 
 const initialization = () => {
