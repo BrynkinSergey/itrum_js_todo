@@ -76,9 +76,15 @@ const renderItem = (item) => {
 
   const todoItemCheckboxElement = document.createElement("input");
   todoItemCheckboxElement.setAttribute("type", "checkbox");
+  todoItemCheckboxElement.setAttribute("id", `${item.id}_checkbox`);
   todoItemCheckboxElement.classList.add("todo-item_check-btn", "todo-item_btn");
   todoItemCheckboxElement.checked = item.checked;
   todoItemCheckboxElement.setAttribute("onclick", "checkboxHandler(this)");
+
+  //<label for="checkbox-1-1"></label>
+
+  const checkboxLabelElement = document.createElement("label");
+  checkboxLabelElement.setAttribute("for", `${item.id}_checkbox`);
 
   const todoItemEditBtnElement = document.createElement("button");
   todoItemEditBtnElement.classList.add("todo-item_edit-btn", "todo-item_btn");
@@ -97,6 +103,7 @@ const renderItem = (item) => {
   todoItemElement.appendChild(todoItemBtnsElement);
 
   todoItemBtnsElement.appendChild(todoItemCheckboxElement);
+  todoItemBtnsElement.appendChild(checkboxLabelElement);
   todoItemBtnsElement.appendChild(todoItemEditBtnElement);
   todoItemBtnsElement.appendChild(todoItemDeleteBtnElement);
 
