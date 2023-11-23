@@ -153,6 +153,8 @@ const renderItems = () => {
   items.forEach((item) => renderItem(item));
 };
 
+// date
+
 const getSelectedDate = () => {
   return document.querySelector(".date-input").value;
 };
