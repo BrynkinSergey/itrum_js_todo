@@ -111,19 +111,21 @@
 }
 
 .todo-item_btn {
-  height: 40px;
-  width: 40px;
+  width: 25px;
+  height: 25px;
   background: transparent;
 
   background-repeat: no-repeat;
   background-position: center;
 
   border: 0;
-  object-fit: cover;
-  background-size: 40px;
+  object-fit: contain;
+  background-size: 25px;
 }
 
 label {
+  width: 20px;
+  height: 20px;
   display: inline-block;
   cursor: pointer;
   position: relative;
@@ -140,8 +142,6 @@ label:before {
   height: 20px;
 
   position: absolute;
-  left: 0;
-  bottom: 9px;
   border-radius: 50%;
   border: 2px black solid;
 }
@@ -164,6 +164,7 @@ input[type="checkbox"]:checked + label:before {
 .todo-item_btns {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .todo-item_edit-btn {
