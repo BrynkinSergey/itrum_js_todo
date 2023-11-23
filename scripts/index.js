@@ -132,7 +132,6 @@ const renderItem = (item) => {
 };
 
 const renderItems = () => {
-  console.log("render");
   clearRenderedItems();
 
   let items = getItems();
@@ -161,11 +160,11 @@ const getSelectedDate = () => {
 // interface
 const addItem = () => {
   const items = getItems();
-  const itemText = getItemNameInputValue();
+  const itemText = getItemNameInputValue().trim();
 
   const date = getSelectedDate();
 
-  if (!itemText) return;
+  if (!itemText || !date) return;
 
   const curId = getId();
   const item = { id: `item-${curId}`, text: itemText, checked: false, date };
@@ -188,6 +187,7 @@ const deleteItem = (elem) => {
 };
 
 const showEditMenu = (elem) => {
+  renderItems();
   const id = elem.parentElement.parentElement.id;
 
   const textEl = document.querySelector(`#${id} > .todo-item_text`);
