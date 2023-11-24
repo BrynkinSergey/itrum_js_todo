@@ -59,7 +59,6 @@ const renderItem = (item) => {
   todoItemTextElement.classList.add("todo-item_text");
   todoItemTextElement.value = item.text;
   todoItemTextElement.setAttribute("onchange", "editItem(this)");
-  // resizeTextArea(todoItemTextElement);
 
   const todoItemBtnsElement = document.createElement("div");
   todoItemBtnsElement.classList.add("todo-item_btns");
@@ -205,13 +204,6 @@ const setWordDateToToggleButton = () => {
   ].join(", ");
 };
 
-const resizeTextArea = (e) => {
-  const text = e;
-  text.style.height = "auto";
-  console.log(text);
-  text.style.height = text.scrollHeight + "px";
-};
-
 // interface
 const addItem = (e) => {
   const itemText = e.target.value.trim();
@@ -273,10 +265,6 @@ const clearItems = () => {
   clearLocalStorage();
   setInitialId();
   clearRenderedItems();
-};
-
-onTestChange = () => {
-  console.log("onchange");
 };
 
 const addEnterEventListeners = () => {
