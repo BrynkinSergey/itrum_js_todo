@@ -55,11 +55,11 @@ const renderItem = (item) => {
   todoItemElement.classList.add("todo-item");
   todoItemElement.setAttribute("id", item.id);
 
-  // base elements
-
-  const todoItemTextElement = document.createElement("p");
+  const todoItemTextElement = document.createElement("input");
   todoItemTextElement.classList.add("todo-item_text");
-  todoItemTextElement.innerHTML = item.text;
+  todoItemTextElement.value = item.text;
+  todoItemTextElement.setAttribute("onchange", "editItem(this)");
+  // resizeTextArea(todoItemTextElement);
 
   const todoItemBtnsElement = document.createElement("div");
   todoItemBtnsElement.classList.add("todo-item_btns");
@@ -71,14 +71,8 @@ const renderItem = (item) => {
   todoItemCheckboxElement.checked = item.checked;
   todoItemCheckboxElement.setAttribute("onclick", "checkboxHandler(this)");
 
-  //<label for="checkbox-1-1"></label>
-
   const checkboxLabelElement = document.createElement("label");
   checkboxLabelElement.setAttribute("for", `${item.id}_checkbox`);
-
-  const todoItemEditBtnElement = document.createElement("button");
-  todoItemEditBtnElement.classList.add("todo-item_edit-btn", "todo-item_btn");
-  todoItemEditBtnElement.setAttribute("onclick", "showEditMenu(this)");
 
   const todoItemDeleteBtnElement = document.createElement("button");
   todoItemDeleteBtnElement.classList.add(
@@ -94,38 +88,7 @@ const renderItem = (item) => {
 
   todoItemBtnsElement.appendChild(todoItemCheckboxElement);
   todoItemBtnsElement.appendChild(checkboxLabelElement);
-  todoItemBtnsElement.appendChild(todoItemEditBtnElement);
   todoItemBtnsElement.appendChild(todoItemDeleteBtnElement);
-
-  //edit menu elements
-
-  const todoItemEditMenuElement = document.createElement("div");
-  todoItemEditMenuElement.classList.add("todo-item_edit-menu");
-
-  const todoItemEditInputElement = document.createElement("input");
-  todoItemEditInputElement.classList.add("todo-item_edit-input");
-  todoItemEditInputElement.setAttribute("type", "text");
-  todoItemEditInputElement.value = item.text;
-
-  const todoItemEditApplyElement = document.createElement("button");
-  todoItemEditApplyElement.classList.add(
-    "todo-item_edit-apply-btn",
-    "todo-item_btn"
-  );
-  todoItemEditApplyElement.setAttribute("onclick", "editItem(this)");
-
-  const todoItemEditCancelElement = document.createElement("button");
-  todoItemEditCancelElement.classList.add(
-    "todo-item_edit-cancel-btn",
-    "todo-item_btn"
-  );
-  todoItemEditCancelElement.setAttribute("onclick", "closeEditMenu(this)");
-
-  todoItemElement.appendChild(todoItemEditMenuElement);
-
-  todoItemEditMenuElement.appendChild(todoItemEditInputElement);
-  todoItemEditMenuElement.appendChild(todoItemEditApplyElement);
-  todoItemEditMenuElement.appendChild(todoItemEditCancelElement);
 };
 
 const renderItems = () => {
@@ -242,6 +205,13 @@ const setWordDateToToggleButton = () => {
   ].join(", ");
 };
 
+const resizeTextArea = (e) => {
+  const text = e;
+  text.style.height = "auto";
+  console.log(text);
+  text.style.height = text.scrollHeight + "px";
+};
+
 // interface
 const addItem = (e) => {
   const itemText = e.target.value.trim();
@@ -272,53 +242,23 @@ const deleteItem = (elem) => {
   renderItems();
 };
 
-const showEditMenu = (elem) => {
-  renderItems();
-  const id = elem.parentElement.parentElement.id;
+const editItem = (e) => {
+  const id = e.parentElement.id;
+  const text = e.value.trim();
 
-  const textEl = document.querySelector(`#${id} > .todo-item_text`);
-  const btnsEl = document.querySelector(`#${id} > .todo-item_btns`);
+  if (text && id) {
+    const items = getItems();
+    const index = items.findIndex((el) => el.id === id);
 
-  const editMenuEl = document.querySelector(`#${id} > .todo-item_edit-menu`);
+    items[index].text = text;
 
-  textEl.style.display = "none";
-  btnsEl.style.display = "none";
-
-  editMenuEl.style.display = "flex";
-};
-
-const closeEditMenu = (elem) => {
-  const id = elem.parentElement.parentElement.id;
-
-  const textEl = document.querySelector(`#${id} > .todo-item_text`);
-  const btnsEl = document.querySelector(`#${id} > .todo-item_btns`);
-
-  const editMenuEl = document.querySelector(`#${id} > .todo-item_edit-menu`);
-
-  textEl.style.display = "block";
-  btnsEl.style.display = "flex";
-
-  editMenuEl.style.display = "none";
-};
-
-const editItem = (elem) => {
-  const id = elem.parentElement.parentElement.id;
-
-  const text = document.querySelector(`#${id} .todo-item_edit-input`).value;
-
-  const items = getItems();
-  const index = items.findIndex((el) => el.id === id);
-
-  items[index].text = text;
-
-  setItems(items);
+    setItems(items);
+  }
   renderItems();
 };
 
 const checkboxHandler = (elem) => {
   const id = elem.parentElement.parentElement.id;
-
-  const text = document.querySelector(`#${id} .todo-item_edit-input`).value;
 
   const items = getItems();
   const index = items.findIndex((el) => el.id === id);
